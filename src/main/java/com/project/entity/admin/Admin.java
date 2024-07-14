@@ -1,6 +1,5 @@
-package com.project.entity.user;
+package com.project.entity.admin;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.entity.Roles;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,36 +11,30 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.sql.Timestamp;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
 @Builder
-public class User implements UserDetails {
+public class Admin implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "user_id", updatable = false, nullable = false)
-    private UUID userId;
+    @Column(name = "admin_id", unique = true, updatable = false, nullable = false)
+    private UUID adminId;
 
-    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private UserDiary diary;
+    @Column(name = "admin_name", nullable = false)
+    private String adminName;
 
-    @Column(name = "user_name", nullable = false)
-    private String userFullName;
+    @Column(name = "admin_email", nullable = false)
+    private String adminEmail;
 
-    @Column(name = "user_email", nullable = false)
-    private String userEmail;
+    @Column(name = "admin_password", nullable = false)
+    private String adminPassword;
 
-    @Column(name = "user_password", nullable = false)
-    private String userPassword;
-
-    @Column(name = "user_profile_image")
-    private String userProfileImage;
+    @Column(name = "admin_profile_image")
+    private String adminProfileImage;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -54,19 +47,20 @@ public class User implements UserDetails {
     @Enumerated(value = EnumType.STRING)
     private Roles role;
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-          return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override
     public String getPassword() {
-        return this.getUserPassword();
+        return this.getAdminPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.getUserEmail();
+        return this.getAdminEmail();
     }
 
     @Override

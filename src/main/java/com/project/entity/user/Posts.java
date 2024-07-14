@@ -1,5 +1,6 @@
 package com.project.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,7 @@ public class Posts {
     private Long postId;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "diary_id", nullable = false)
     private UserDiary diary;
 

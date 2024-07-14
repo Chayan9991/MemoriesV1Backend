@@ -1,6 +1,4 @@
-Certainly! Based on the `.gitignore` file you provided, it does not currently include an entry to ignore `application.properties`. Here's the original content you shared:
 
-```plaintext
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -31,53 +29,4 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-
-### VS Code ###
-.vscode/
-```
-
-To ignore `application.properties`, you can add the following line to the end of your `.gitignore` file:
-
-```plaintext
-/src/main/resources/application.properties
-```
-
-### Updated `.gitignore`
-
-```plaintext
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
-
-#Ignore the app.properties file
-/src/main/resources/application.properties
+/src/main/resources/application-secrets.properties
